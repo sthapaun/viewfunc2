@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{{.Title}}</title>
+	<link rel="stylesheet" href="/static/themes/prism-funky.css" />
+	<link rel="stylesheet" href="/static/bootstrap.min.css" />
+	<script src="/static/prism.js"></script>
+	<script src="/static/bootstrap.min.js"></script>
+  </head>
+  <body>
+  <nav class="navbar navbar-default" role="navigation">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">Paste Something</a>
+          <ul class="nav navbar-nav">
+        
+             <li><a href="/logout">Logout</a></li>
+             <li>Weclome, {{.User.Name}}</li>
+          </ul>
+        </div>
+      </div><!-- /.container-fluid -->
+    </nav>
+    <div class="container-fluid">
+
+      <div class="main row">
+        <div class="content col-xs-8">
+          {{template "Body" .}}
+        </div>
+        <div class="sidebar col-xs-4">
+          	<h3 align="center">Public Pastes</h3>
+			<table align="center">
+{{range Publicpastes}}
+				<tr>
+					<td align="center">
+						<a href="/paste/{{.Id}}">{{.Title}}</a>
+					</td>
+				</tr>
+{{end}}
+			</table>
+			<h3 align="center">Private Pastes</h3>
+			<table align="center">			
+{{range Privatepastes .User.Id}}
+				<tr>
+					<td align="center">
+						<a href="/paste/{{.Id}}">{{.Title}}</a>
+					</td>
+				</tr>
+{{end}}
+			</table>		
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

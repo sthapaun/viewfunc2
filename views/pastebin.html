@@ -1,0 +1,22 @@
+{{define "Body"}}
+<div>
+<form action="/new" method="post">
+<div>
+<label>Title:
+<input type="text" name="title" required></label></div>
+<label for="content">Content</label><br />
+<textarea name="content" id="content" required></textarea><br />
+<div><label>Languages:
+<select name="language" required>
+	{{range $k, $v := .Languages}}
+	<option value={{$k}} label="{{$k}}" />
+	{{end}}
+</select>
+</label>
+</div>
+<div><input type="radio" name="ispublic" value="true" checked>Public</input>
+   <input type="radio" name="ispublic" value="false">Private</input></div>
+<div><input type="submit" value="Create Pastebin" /></div>
+</form>
+</div>
+{{end}} 
